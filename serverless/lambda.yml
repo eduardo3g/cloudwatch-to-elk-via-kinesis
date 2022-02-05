@@ -1,0 +1,6 @@
+Handler:
+  handler: src/lambdas/handler/index.handler
+  events:
+    - http:
+        method: post
+        path: /

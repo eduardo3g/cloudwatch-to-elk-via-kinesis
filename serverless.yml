@@ -1,0 +1,26 @@
+service: poc-firehose-to-elk
+
+frameworkVersion: "2"
+
+provider:
+  name: aws
+  region: us-east-1
+  runtime: nodejs14.x
+  timeout: 180
+  lambdaHashingVersion: 20201221
+  environment:
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1"
+
+plugins:
+  - serverless-webpack
+
+custom:
+  webpack:
+    webpackConfig: "webpack.config.js"
+    includeModules: true
+
+package:
+  individually: true
+
+functions:
+  handler: ${file(./serverless/lambda.yml):Handler}
