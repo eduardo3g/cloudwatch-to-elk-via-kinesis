@@ -12,7 +12,7 @@ provider:
     AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1"
     logstash_host: listener.logz.io
     logstash_port: 5050
-    token: gRzibLDiMRPuoSegfrEeltfwfhZfrNpS
+    token: ${ssm:/logz-io/data-shipping-token}
 
 plugins:
   - serverless-webpack
