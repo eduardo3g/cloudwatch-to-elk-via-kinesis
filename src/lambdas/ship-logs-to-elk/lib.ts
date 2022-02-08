@@ -21,22 +21,39 @@ const processAll = async ({ logGroup, logStream, logEvents }: Parameters) => {
 
       for (let logEvent of logEvents) {
         try {
-          const log = getLogMessage(logEvent);
+          let log = getLogMessage(logEvent);
 
           if (log) {
-            const parsedLogMessage = JSON.parse(log.message);
+            const { functionVersion, functionMemorySize, sLevel, awsRegion, message, functionName } = JSON.parse(log.message);
 
-            log.functionName       = JSON.stringify(parsedLogMessage.functionName);
-            log.functionVersion    = parsedLogMessage.functionVersion;
-            log.functionMemorySize = parsedLogMessage.functionMemorySize;
-            log.level              = parsedLogMessage.sLevel;
-            log.awsRegion          = parsedLogMessage.awsRegion;
-            log.name               = parsedLogMessage.message;
+            log.functionName       = functionName;
+            log.functionVersion    = functionVersion;
+            log.functionMemorySize = functionMemorySize;
+            log.level              = sLevel;
+            log.awsRegion          = awsRegion;
+            log.name               = message;
             log.logStream          = logStream;
             log.logGroup           = logGroup;
             log.type               = "cloudwatch";
             log.token              = token;
             log.fields             = {};
+
+            let parsedLogMessage = JSON.parse(log.message);
+
+            // Delete metadata from 'message' field, because they're shipped to ELK in separate fields
+            delete parsedLogMessage.awsRegion;
+            delete parsedLogMessage.functionName;
+            delete parsedLogMessage.functionVersion;
+            delete parsedLogMessage.functionMemorySize;
+            delete parsedLogMessage.level;
+            delete parsedLogMessage.sLevel;
+            delete parsedLogMessage.message;
+            delete log.message;
+
+            // After deleting metadata fields, if what remained is an empty object, send empty string to ELK
+            Object.keys(parsedLogMessage).length < 1
+              ? log.data = '-'
+              : log.data = JSON.stringify(parsedLogMessage);
 
             socket.write(JSON.stringify(log) + '\n');
 
