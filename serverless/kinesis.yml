@@ -1,0 +1,14 @@
+KinesisLogsSream:
+  Type: AWS::Kinesis::Stream
+  Properties:
+    Name: ${self:service}-${self:custom.stage}-logs
+    RetentionPeriodHours: 24
+    StreamModeDetails:
+      StreamMode: ON_DEMAND
+    Tags:
+      - Key: Environment
+        Value: ${self:custom.stage}
+      - Key: Name
+        Value: ${self:service}-${self:custom.stage}-logs
+      - Key: Cost Center
+        Value: IX-GYMPASS

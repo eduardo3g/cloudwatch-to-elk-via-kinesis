@@ -10,11 +10,15 @@ provider:
   lambdaHashingVersion: 20201221
   environment:
     AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1"
+    logstash_host: listener.logz.io
+    logstash_port: 5050
+    token: gRzibLDiMRPuoSegfrEeltfwfhZfrNpS
 
 plugins:
   - serverless-webpack
 
 custom:
+  stage: ${opt:stage, self:provider.stage}
   webpack:
     webpackConfig: "webpack.config.js"
     includeModules: true
@@ -23,4 +27,9 @@ package:
   individually: true
 
 functions:
-  handler: ${file(./serverless/lambda.yml):Handler}
+  handler: ${file(./serverless/lambda.yml):handler}
+  ship-logs-to-elk: ${file(./serverless/lambda.yml):ship-logs-to-elk}
+
+resources:
+  Resources:
+    KinesisLogsStream: ${file(./serverless/kinesis.yml):KinesisLogsSream}
