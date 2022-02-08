@@ -3,7 +3,7 @@ import { gunzipSync } from 'zlib';
 import processAll from './lib';
 
 const parsePayload = (record: KinesisStreamRecord) => {
-  const payload = new Buffer(record.kinesis.data, 'base64');
+  const payload = Buffer.from(record.kinesis.data, 'base64');
   const json = (gunzipSync(payload)).toString('utf-8');
   return JSON.parse(json);
 };
