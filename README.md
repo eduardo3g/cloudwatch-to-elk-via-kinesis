@@ -56,9 +56,9 @@ There's a pretty easy way to subscribe your existing and new Cloudwatch log grou
   
 ## Log Group retention
   
-By default all the Log Groups are configured to never expire. That's because AWS will not discard your logs unless you tell them to. There's <a href="https://serverlessrepo.aws.amazon.com/#!/applications/arn:aws:serverlessrepo:us-east-1:374852340823:applications~auto-set-log-group-retention">another SAR</a> to configure a retention in days for all the log groups from your account. <br />
+By default all the Log Groups are configured to never expire. That's because AWS will not discard your logs unless you tell them to. There's <a href="https://serverlessrepo.aws.amazon.com/#!/applications/arn:aws:serverlessrepo:us-east-1:374852340823:applications~auto-set-log-group-retention">another SAR</a> to configure the retention period in days for all the log groups from your account. <br />
   
-I usually set up a 7 days retention for the log groups, since the logs will be streamed to another log aggregation software (Elasticsearch, Splunk, Datadog, etc.). There's no need to keep them in Cloudwatch for too long after they've already been shipped.
+I usually set up a 7-days retention period for the log groups, since the logs will be streamed to another log aggregation software (Elasticsearch, Splunk, Datadog, etc.). There's no need to keep them in Cloudwatch for too long after they've already been shipped.
   
 ## Elasticsearch
   
