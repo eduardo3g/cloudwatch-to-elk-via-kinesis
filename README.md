@@ -72,24 +72,24 @@ Your could encrypt this key with <a href="https://aws.amazon.com/kms/">AWS KMS</
   
 ## Deploy ☁️
 
-1. Install the project dependencies
+1. Install the project dependencies.
 ```
 npm install
 ```
 
-2. Make sure that you have already created the key in the SSM Parameter Store with your Logz.io data shipping token
+2. Make sure that you have already created the key in the SSM Parameter Store with your Logz.io data shipping token.
   
-3. Deploy with stack using the Serverless Framework. It'll create a ```dev``` stack. Pass the stage in case you want to publish it to a ```prod``` stack.
+3. Deploy the stack using the Serverless Framework. It'll create a ```dev``` stack on CloudFormation.
   
 ```
 serverless deploy
 ```
   
-4. Open your AWS account and select the Kinesis Service. Get the data stream ```arn```.
+4. Open your AWS account and select the Kinesis service. Get the data stream ```arn```.
   
-5. Deploy the <a href="https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:374852340823:applications~auto-subscribe-log-group-to-arn">SAR</a> that auto creates subscription filters to the recently created Kinesis Data Stream. Use the ```arn``` from the step 4. Do not forget to read the documentation before deploying it to your account.
-  
-6. Deploy the <a href="https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:374852340823:applications~auto-set-log-group-retention">SAR</a> to update the log groups retention policy.
+5. Deploy the <a href="https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:374852340823:applications~auto-subscribe-log-group-to-arn">SAR</a> that automatically creates subscription filters to the recently created Kinesis Data Stream. Use the ```arn``` from the step 4. Do not forget to read the documentation before deploying it to your account.
+
+6. Deploy the second <a href="https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:374852340823:applications~auto-set-log-group-retention">SAR</a> to update the log groups retention policy.
   
 7. Open Cloudwatch Logs > Log Groups and make sure that your see a subscription filter on all the log groups.
   
