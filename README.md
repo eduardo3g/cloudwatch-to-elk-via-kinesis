@@ -26,6 +26,15 @@ Here are some caveats that you should consider when choosing the log group's sub
   
 In this solution I decided to follow the third approach: ship logs from Cloudwatch Lg Groups to a Kinesis Data Stream (On Demand) via subscription filter.
 
+# 👨🏽‍🔧 Tech stack
+- Serverless Framework
+- Node.js / Typescript
+- AWS Kinesis Data Streams
+- AWS Lambda
+- AWS Cloudwatch Logs
+- AWS SSM Parameter Store
+- Elasticsearch (Logz.io)
+
 ## Requirements 🧰
 - Serverless Framework globally installed in your workstation
   - This project uses v2 (Serverless just released v3 on Feb/2022, but it wasn't tested with this demo yet)
