@@ -2,6 +2,8 @@
 
 Collect data from every single Cloudwatch Log Groups (API Gateway, Lambda, AppSync, etc.) and stream them in real-time to an Elasticsearch cluster hosted by <a href="https://logz.io">Logz.io<a/>.
   
+<img src="./.github/docs/Log%20Ingestion%20Pipeline.png" alt="Log ingestion pipeline diagram">
+  
 ## Introduction ✨
   
 Cloudwatch Logs is the core service provded by AWS to ingest and store logs, however, the experience to query those logs and set up dashboards or alerts can't be compared to Elasticsearch and Kibana.
@@ -102,7 +104,3 @@ serverless deploy
 - Deploy this log aggregator stack to a separate AWS account. That way it'll not consume Lambda concurrent executions with other business-critical Lambdas.
   
 - This system will fail at some point in the future. Ship logs to an SQS dead-letter queue if the poisoned message fails to be processed.
-
-## Architecture
-
-<img src="./.github/docs/Log%20Ingestion%20Pipeline.png" alt="Log ingestion pipeline diagram">
