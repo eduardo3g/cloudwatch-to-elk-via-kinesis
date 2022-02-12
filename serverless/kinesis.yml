@@ -10,5 +10,3 @@ KinesisLogsSream:
         Value: ${self:custom.stage}
       - Key: Name
         Value: ${self:service}-${self:custom.stage}-logs
-      - Key: Cost Center
-        Value: IX-GYMPASS
