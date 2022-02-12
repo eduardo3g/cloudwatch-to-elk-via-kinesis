@@ -27,7 +27,6 @@ package:
   individually: true
 
 functions:
-  handler: ${file(./serverless/lambda.yml):handler}
   ship-logs-to-elk: ${file(./serverless/lambda.yml):ship-logs-to-elk}
 
 resources:

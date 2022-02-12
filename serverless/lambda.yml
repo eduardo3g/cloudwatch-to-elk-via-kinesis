@@ -1,10 +1,3 @@
-handler:
-  handler: src/lambdas/handler/index.handler
-  events:
-    - http:
-        method: post
-        path: /
-
 ship-logs-to-elk:
   handler: src/lambdas/ship-logs-to-elk/index.handler
   events:
