@@ -13,7 +13,6 @@ const getRecords = (event: KinesisStreamEvent) => event.Records.map(parsePayload
 export const handler = async (event: KinesisStreamEvent): Promise<boolean> => {
   try {
     const records = getRecords(event);
-    console.log('Decoded records', records);
 
     for (let { logGroup, logStream, logEvents } of records) {
       await processAll({ logGroup, logStream, logEvents });
@@ -22,6 +21,6 @@ export const handler = async (event: KinesisStreamEvent): Promise<boolean> => {
     return true;
   } catch (e) {
     console.error(e);
-    return false
+    return false;
   }
 };
