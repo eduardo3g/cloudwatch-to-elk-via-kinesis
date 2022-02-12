@@ -40,7 +40,7 @@ In this solution I decided to follow the third approach: ship logs from Cloudwat
   - This project uses v2 (Serverless just released v3 on Feb/2022, but it wasn't tested with this demo yet)
 - Node.js (14.x+)
 - NPM (Node Package Manager)
-- AWS profile with administrator accesss configured via AWS CLI (required to deploy your stack later)
+- AWS profile with administrator access configured via AWS CLI (required to deploy your stack later)
   
 ## Set up ⚙️
   
