@@ -102,3 +102,7 @@ serverless deploy
 - Deploy this log aggregator stack to a separate AWS account. That way it'll not consume Lambda concurrent executions with other business-critical Lambdas.
   
 - This system will fail at some point in the future. Ship logs to an SQS dead-letter queue if the poisoned message fails to be processed.
+
+## Architecture
+
+<img src="./.github/docs/Log%20Ingestion%20Pipeline.png" alt="Log ingestion pipeline diagram">
